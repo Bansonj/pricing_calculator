@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pricing Calculator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{padding:3rem;}
+        .container{
+            background: #eee;
+        }
+        .font-weight-bold{
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h2>How much do your Designs cost?</h2>
+
+            <form>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" name="price" id="price" value="30" class="form-control price">
+                </div>
+                <!-- <div class="form-group">
+                    <label for="quantity">Qty</label>
+                    <input type="text" name="quantity" id="quantity" value="1" class="form-control quantity">
+                </div> -->
+                <div class="form-group">
+                    <label for="quantity">Qty</label>
+                    <span class="badge badge-info badge-qty">1</span>
+                    <input type="range" min="1" max="10" name="quantity" class="form-control quantity" step="1">
+                </div>
+            </form>
+
+            <!-- <div class="text-right font-weight-bold total">$30</div> -->
+            <div class="text-right font-weight-bold total">$0</div>
+
+        </div><!-- End of Jumbotron -->
+    </div><!-- End of container -->
+
+
+    <script>
+        const price = document.querySelector('.price');
+        const quantity = document.querySelector('.quantity');
+        const total = document.querySelector('.total');
+        const badgeQty = document.querySelector('.badge-qty');
+
+        document.addEventListener('input', ()=>{
+            // console.log(price.value);
+            const priceInput = price.value;
+            const quantityInput = quantity.value;
+            const cost = priceInput * quantityInput;
+
+            // total.innerText = cost;
+            // total.innerText = `$${cost}`;
+            total.innerText = `$${cost.toFixed(2)}`;
+        })
+
+        /* Badge */
+        quantity.addEventListener('input', ()=>{
+            const quantityInput = quantity.value;
+            badgeQty.innerText = quantityInput;
+        });
+
+        
+    
+    </script>
+</body>
+</html>
